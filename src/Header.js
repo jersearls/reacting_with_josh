@@ -1,15 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-
-function updateTitleAsAction(args) {
-    return {
-        type: "UPDATE_TITLE",
-        result: {
-            title: "World War Declared"
-        }
-    };
-}
+import { updateTitle } from "./actions";
 
 class Header extends Component {
     static propTypes = {
@@ -33,16 +25,14 @@ class Header extends Component {
 
 //connect is a 'thunk' function that returns a function
 function mapStateToProps(state) {
-    console.log("Updated state");
-
     return {
-        title: state.title
+        title: state.article.title
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        updateTitle: () => dispatch(updateTitleAsAction())
+        updateTitle: () => dispatch(updateTitle())
     };
 }
 
